@@ -23,9 +23,7 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
-    "proxy-ip-d": "../proxy-ip-d/proxy-ip-d-0.0.5.tgz",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
