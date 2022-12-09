@@ -1,0 +1,8 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+dist
+package-lock.json
+yarn.lock
+.env

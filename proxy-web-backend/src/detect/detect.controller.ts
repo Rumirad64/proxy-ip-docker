@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { DetectService } from './detect.service';
 import { CreateDetectDto } from './dto/create-detect.dto';
 import { UpdateDetectDto } from './dto/update-detect.dto';
@@ -7,19 +7,17 @@ import { UpdateDetectDto } from './dto/update-detect.dto';
 export class DetectController {
   constructor(private readonly detectService: DetectService) {}
 
-  @Post()
-  create(@Body() createDetectDto: CreateDetectDto) {
-    return this.detectService.create(createDetectDto);
-  }
-
   @Get()
-  findAll() {
-    return this.detectService.findAll();
+  findAll(@Query('page') page: number, @Query('limit') limit: number, @Query('search') search: string) {
+    page = page || 1;
+    limit = limit || 20;
+    search = search || '';
+    return this.detectService.findAll(page, limit, search);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.detectService.findOne(+id);
+  @Get(':ip')
+  findOne(@Param('ip') ip: string) {
+    return this.detectService.findOne(ip);
   }
 
   @Patch(':id')
@@ -27,8 +25,8 @@ export class DetectController {
     return this.detectService.update(+id, updateDetectDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.detectService.remove(+id);
+  @Delete(':ip')
+  remove(@Param('ip') ip: string) {
+    return this.detectService.remove(ip);
   }
 }
